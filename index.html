@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academlo Store</title>
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <div id="loader" class="loader">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.92 56.48" class="loader--img">
+          <title>Academlo Logo</title>
+          <g>
+              <g>
+                  <path
+                  d="M24.45,56.48,0,42.36V14.12L24.46,0,48.92,14.12V42.36ZM1.89,41.26l22.56,13L47,41.26v-26l-22.56-13-22.56,13Z">
+                  </path>
+                  <path
+                  d="M28.58,15.39H25.16L35.78,36H31.49L20.67,15.71,8.23,38.82H18.94l3-5.43h-3.4l-1.47,2.54h-4l2.69-5.09H25.85l4.28,8H40.67ZM17.23,28.21l3.57-6.6,3.57,6.6Z">
+                  </path>
+              </g>
+          </g>
+      </svg>
+    </div>
+    <header class="header" id="header">
+      <nav class="nav">
+        <a href="#" class="nav--logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.92 56.48">
+              <title>Academlo Logo</title>
+              <g>
+                <g>
+                  <path
+                    d="M28.58,15.39H25.16L35.78,36H31.49L20.67,15.71,8.23,38.82H18.94l3-5.43h-3.4l-1.47,2.54h-4l2.69-5.09H25.85l4.28,8H40.67ZM17.23,28.21l3.57-6.6,3.57,6.6Z">
+                  </path>
+                </g>
+              </g>
+          </svg>
+        </a>
+
+        <div class="nav--menu">
+          <ul class="nav--list"> 
+            <li class="nav--item">
+              <a href="#" class="nav--link">
+                Home
+              </a>
+            </li>
+            <li class="nav--item">
+              <a href="#" class="nav--link">
+                Productos
+              </a>
+            </li>
+          </ul>
+          <div class="nav--close">
+            <i class='bx bx-x'></i>
+          </div>
+        </div>
+
+        <div class="nav--btns">
+          <i class='bx bx-moon change-theme' id="theme-button"></i>
+
+          <div class="nav--cart" id="cart-shop">
+            <i class='bx bx-shopping-bag'></i>
+            <span id="cart-counter" class="counter">0</span>
+          </div>
+
+          <div class="nav--toggle" id="nav-toggle">
+            <i class='bx bx-grid-alt'></i>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="cart--container hide" id="cart-container">
+      <div class="cart" id="cart">
+        <div class="nav--close" id="close-cart">
+          <i class='bx bx-x'></i>
+        </div>
+      </div>
+    </div>
+
+    <main>
+     <!--Display y titulo-->
+     <section class="display">
+      <div class="contenedor-display"><img src="" alt=""></div>
+      <div class="contenedor-producto-display">
+          <h1 class="display-titulo">New sweatshirt COLLECTIONS 2022</h1>
+          <p class="display-parrafo">latest arrival of the new hanes midweight sweatshirt imported from the 2022 with a modern design</p>
+          <h3 class="precio">$14.00</h3>
+          <button type="button">Discover</button>
+          <button type="button">ADD TO CART</button>
+      </div>
+  </section>
+  <!--fin Display y titulo-->
+  <!--Cateogorias y filtrado-->
+  <section class="categorias">
+      <article class="categoria">Show all <br><span>show all products</span></article>
+      <article class="categoria">Hoodies<br><span>0 products</span></article>
+      <article class="categoria">shirts<br><span>0 products</span></article>
+      <article class="categoria">Sweatshirts<br><span>0 products</span></article>
+  </section>
+  <!--fin Cateogorias y filtrado-->
+  <!--Inicio cartas de producto-->
+  <section class="productos">
+      <div class="carta">
+          <div class="contenedor-imagen"><img src="" alt=""></div>
+          <h4 class="precio">$0</h4>
+          <h6 class="stock">Stock:0</h6>
+          <h4 class="categoria">Hoodies</h4>
+      </div>
+      <div class="carta">
+          <div class="contenedor-imagen"><img src="" alt=""></div>
+          <h4 class="precio">$0</h4>
+          <h6 class="stock">Stock:0</h6>
+          <h4 class="categoria">Shirts</h4>
+      </div>
+      <div class="carta">
+          <div class="contenedor-imagen"><img src="" alt=""></div>
+          <h4 class="precio">$0</h4>
+          <h6 class="stock">Stock:0</h6>
+          <h4 class="categoria">Sweatshirts</h4>
+      </div>
+  </section>
+    </main>
+
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
