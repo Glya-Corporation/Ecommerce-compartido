@@ -311,8 +311,7 @@ body{
 .carta{
   width: 200px;
   height: 240px;
-  display: flex;
-  flex-wrap: wrap;
+  position: relative;
   justify-content: center;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   border-radius: 10%;
@@ -336,26 +335,35 @@ body{
 .carta-precio{
   height:20px;
   font-size: 20px;
+  display: inline-block;
 }
 
 .carta-stock{
   height: 15px;
-  width:50px;
+  width:70px;
   border-left: 1px solid var(--border-color);
+  display: inline-block;
+  border-left: .5px solid #000000;
+  padding-left: 5px;
 }
 
 .carta-nombre{
   height:20px;
   width:30px;
+  display: block;
+  margin-left: 1rem;
+}
+.carta-precio{
+  margin: 1rem 0 0 1rem;
 }
 
 .btn_item{
   border-radius: 50%;
   height:40px;
   width:40px;
-  position: relative;
-  bottom: 2.5rem;
-  left:1.2rem;
+  position: absolute;
+  bottom: 3.5rem;
+  right: 1.5rem;
   border: transparent;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: var(--body-color);
@@ -363,6 +371,7 @@ body{
   font-weight: 400;
   transition: all 0.5s;
   cursor: pointer;
+  z-index: 85;
 }
 
 .btn_item h3{

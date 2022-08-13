@@ -91,7 +91,7 @@ function mostrarProductos(items){
                 <h4 class="carta-precio">${productos.price}</h4>
                 <h6 class="carta-stock">Stock: ${productos.quantity}</h6>
                 <h4 class="carta-nombre">${productos.name}</h4>
-                <button class="btn_item"><h3>+</h3></button>
+                <button class="btn_item"><i class="bx bx-plus"></i></button>
             </div>
         `
     });
@@ -108,9 +108,9 @@ function funcionalidadCartas(){
     btns.forEach( boton => {
         boton.addEventListener('click', e => {
             const id = parseInt(e.target.parentElement.id)
-            const productoSeleccionado = arregloProductos.find( item => item.id === id )
+            const productoSeleccionado = arregloProductos.find( item => item.id == id )
             productoSeleccionado.cantidad = 1
-
+            
             if(carritoCompras.hasOwnProperty(productoSeleccionado.id)){
                 productoSeleccionado.cantidad = carritoCompras[productoSeleccionado.id].cantidad + 1
             }
