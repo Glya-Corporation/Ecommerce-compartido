@@ -1,6 +1,34 @@
+const arregloProductos = [
+    {
+      id: 1,
+      name: 'Hoodies',
+      price: 14.00,
+      image: 'assets/images/featured1.png',
+      category: 'hoodies',
+      quantity: 10
+    },
+    {
+      id: 2,
+      name: 'Shirts',
+      price: 24.00,
+      image: 'assets/images/featured2.png',
+      category: 'shirts',
+      quantity: 15
+    },
+    {
+      id: 3,
+      name: 'Sweatshirts',
+      price: 24.00,
+      image: 'assets/images/featured3.png',
+      category: 'sweatshirts',
+      quantity: 20
+    }
+  ]
+
 
 document.addEventListener( "DOMContentLoaded", () =>{
     load()
+    mostrarProductos(arregloProductos)
 })
 
 /* =========== LOADER ========== */
@@ -51,3 +79,51 @@ window.addEventListener( "scroll", () =>{
     }
 })
 
+const caja_productos = document.getElementById('caja_productos');
+
+function mostrarProductos(items){
+    let fragmento = ``
+    
+    items.map(productos => {
+        fragmento += `
+            <div class="carta" id="${productos.id}">
+                <div class="contenedor-imagen"><img class="carta-imagen" src="${productos.image}" alt="foto del producto"></div>
+                <h4 class="carta-precio">${productos.price}</h4>
+                <h6 class="carta-stock">Stock: ${productos.quantity}</h6>
+                <h4 class="carta-nombre">${productos.name}</h4>
+                <button class="btn_item">+</button>
+            </div>
+        `
+    });
+
+    caja_productos.innerHTML = fragmento
+
+    funcionalidadCartas()
+}
+
+function funcionalidadCartas(){
+    const btns = document.querySelectorAll('.btn_item');
+    const carritoCompras = []
+    
+    btns.forEach( boton => {
+        boton.addEventListener('click', e => {
+            const id = parseInt(e.target.parentElement.id)
+            const productoSeleccionado = arregloProductos.find( item => item.id === id )
+            productoSeleccionado.cantidad = 1
+
+            if(carritoCompras.length !== 0){
+                carritoCompras.forEach(elemento =>{
+                    if(elemento.id === productoSeleccionado.id){
+                        elemento.cantidad++
+                    }else{
+                        carritoCompras.push(productoSeleccionado)
+                    }
+                })
+            }else{
+                carritoCompras.push(productoSeleccionado)
+            }
+            
+            console.log(carritoCompras);
+        })
+    })
+}
