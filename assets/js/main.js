@@ -91,7 +91,7 @@ function mostrarProductos(items){
                 <h4 class="carta-precio">${productos.price}</h4>
                 <h6 class="carta-stock">Stock: ${productos.quantity}</h6>
                 <h4 class="carta-nombre">${productos.name}</h4>
-                <button class="btn_item">+</button>
+                <button class="btn_item"><h3>+</h3></button>
             </div>
         `
     });
@@ -122,3 +122,17 @@ function funcionalidadCartas(){
         })
     })
 }
+
+let categoria = document.querySelectorAll('.categoria')
+
+categoria.forEach( boton =>{
+    boton.addEventListener('click', e=>{
+        //console.log(e.target.parentElement.id)
+        if(e.target.parentElement.id === 'categorias_all'){
+            mostrarProductos(arregloProductos)
+        }else{
+            let productos = arregloProductos.filter( producto => producto.category === e.target.parentElement.id)
+            mostrarProductos(productos)
+        }
+    })
+})
