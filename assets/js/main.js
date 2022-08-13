@@ -103,7 +103,7 @@ function mostrarProductos(items){
 
 function funcionalidadCartas(){
     const btns = document.querySelectorAll('.btn_item');
-    const carritoCompras = []
+    const carritoCompras = {}
     
     btns.forEach( boton => {
         boton.addEventListener('click', e => {
@@ -111,17 +111,12 @@ function funcionalidadCartas(){
             const productoSeleccionado = arregloProductos.find( item => item.id === id )
             productoSeleccionado.cantidad = 1
 
-            if(carritoCompras.length !== 0){
-                carritoCompras.forEach(elemento =>{
-                    if(elemento.id === productoSeleccionado.id){
-                        elemento.cantidad++
-                    }else{
-                        carritoCompras.push(productoSeleccionado)
-                    }
-                })
-            }else{
-                carritoCompras.push(productoSeleccionado)
+            if(carritoCompras.hasOwnProperty(productoSeleccionado.id)){
+                productoSeleccionado.cantidad = carritoCompras[productoSeleccionado.id].cantidad + 1
             }
+
+            carritoCompras[productoSeleccionado.id] = {...productoSeleccionado}            
+
             
             console.log(carritoCompras);
         })
