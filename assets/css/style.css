@@ -170,10 +170,69 @@ body{
 .bx-x{
   font-size: 2rem;
   position: absolute;
-  top: 1.5rem;
+  top: .5rem;
   right: 1rem;
 }
-
+.carrito{
+  display: flex;
+  width: 80%;
+  margin: 0 1rem;
+  align-items: center;
+  gap: 10px;
+}
+.contenedor--imagen-carrito{
+  width: 20%;
+  height: 25%;
+  border: .5px solid #00000010;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.carrito-imagen{
+  width: 90%;
+  height: 90%;
+  margin: auto;
+}
+.contenedor--texto-carrito{
+  width: 70%;
+}
+.carrito-precio{
+  border-left: 1px solid #00000050;
+  padding-left: 4px;
+  color: var(--first-color);
+}
+.carrito-subtotal{
+  color: var(--first-color);
+}
+.carrito-t{
+  margin-top: .3rem;
+  font-weight: 100;
+}
+.botones-carrito{
+  display: flex;
+  margin-top: .3rem;
+  gap: 10px;
+  align-items: center;
+}
+#btn_minus,
+#btn_plus{
+  position: unset;
+  width: 25px;
+  height: 25px;
+  border-radius: 0;
+  font-size: 15px;
+  box-shadow: 0 0 0;
+  border: .5px solid #00000020;
+}
+#btn_carrito_delete{
+  margin-left: 2rem;
+  background-color: transparent;
+  border: none;
+  color: var(--first-color);
+}
+.bx-trash-alt{
+  font-size: 20px;
+}
 .nav--btns{
   display: flex;
   align-items: center;
@@ -244,6 +303,14 @@ body{
   right: 0;
   background-color: var(--container-color);
   box-shadow: -4px 5px 10px rgb(147, 147, 147);
+  display: flex;
+  flex-wrap: wrap;
+}
+.titulo-cart{
+  text-align: center;
+  width: 100%;
+  position: relative;
+  top: 4rem;
 }
 
 /*  display */
