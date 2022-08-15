@@ -91,7 +91,7 @@ function mostrarProductos(items){
                 <h4 class="carta-precio">${productos.price}</h4>
                 <h6 class="carta-stock">Stock: ${productos.quantity}</h6>
                 <h4 class="carta-nombre">${productos.name}</h4>
-                <button class="btn_item"><i class="bx bx-plus"></i></button>
+                <button class="btn_item">+</button>
             </div>
         `
     });
@@ -111,14 +111,23 @@ function funcionalidadCartas(){
             const productoSeleccionado = arregloProductos.find( item => item.id == id )
             productoSeleccionado.cantidad = 1
             
+            if(arregloProductos[id - 1].quantity !== 0){
+              arregloProductos[id - 1].quantity--;
+            
             if(carritoCompras.hasOwnProperty(productoSeleccionado.id)){
                 productoSeleccionado.cantidad = carritoCompras[productoSeleccionado.id].cantidad + 1
             }
 
-            carritoCompras[productoSeleccionado.id] = {...productoSeleccionado}            
+            carritoCompras[productoSeleccionado.id] = {...productoSeleccionado}
+            }else{
+              alert('Disculpe ya no disponemos del producto')
+            }          
 
             
             console.log(carritoCompras);
+            console.log(arregloProductos[id -1].quantity,arregloProductos[id -1].name)
+            
+            mostrarProductos(arregloProductos)
         })
     })
 }
@@ -136,3 +145,4 @@ categoria.forEach( boton =>{
         }
     })
 })
+
