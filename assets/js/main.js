@@ -101,6 +101,8 @@ function mostrarProductos(items){
     funcionalidadCartas()
 }
 
+const mensajeAlerta = document.querySelector('.alert');
+
 function funcionalidadCartas(){
     const btns = document.querySelectorAll('.btn_item');
     const carritoCompras = {}
@@ -120,7 +122,7 @@ function funcionalidadCartas(){
 
             carritoCompras[productoSeleccionado.id] = {...productoSeleccionado}
             }else{
-              alert('Disculpe ya no disponemos del producto')
+              mensajeAlerta.classList.remove('hide')
             }          
 
             
@@ -131,6 +133,9 @@ function funcionalidadCartas(){
         })
     })
 }
+
+const botonCerrarAlert = document.getElementById('cerrar_mensaje');
+botonCerrarAlert.addEventListener('click', e => mensajeAlerta.classList.add('hide'))
 
 let categoria = document.querySelectorAll('.categoria')
 
