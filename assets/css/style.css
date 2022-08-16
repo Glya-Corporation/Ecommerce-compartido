@@ -80,7 +80,7 @@ body{
   width: 100vw;
   height: 100vh;
   background-color: #00000040;
-  z-index: 100;
+  z-index: 200;
   transition: all .5s ease-in;
 }
 .mensaje-alert{
@@ -216,8 +216,8 @@ body{
   gap: 10px;
   align-items: center;
 }
-#btn_minus,
-#btn_plus{
+.btn_minus,
+.btn_plus{
   position: unset;
   width: 25px;
   height: 25px;
@@ -226,7 +226,7 @@ body{
   box-shadow: 0 0 0;
   border: .5px solid #00000020;
 }
-#btn_carrito_delete{
+.btn_carrito_delete{
   margin-left: 2rem;
   background-color: transparent;
   border: none;
@@ -270,7 +270,7 @@ body{
   width:100%;
 }
 
-.counter{
+#cart-counter{
   background: var(--title-color);
   position: absolute;
   padding: 0.25rem;
@@ -313,6 +313,12 @@ body{
   width: 100%;
   position: relative;
   top: 4rem;
+}
+.footer-carrito{
+  width: 80%;
+  margin: auto auto 5px;
+  display: flex;
+  justify-content: space-between;
 }
 
 /*  display */

@@ -57,6 +57,7 @@ themeButton.addEventListener( "click", () =>{
 const cartOpen = document.getElementById( "cart-shop" )
 const cartClose = document.getElementById( "close-cart" )
 const cartContainer = document.getElementById( "cart-container" )
+const cartCounter = document.getElementById('cart-counter')
 
 cartOpen.addEventListener( "click", () => {
     cartContainer.classList.remove( "hide" )
@@ -78,8 +79,16 @@ window.addEventListener( "scroll", () =>{
         header.classList.remove("scroll-header")
     }
 })
-
+/* =========COMPORTAMIENTO CARRITO========== */
 const caja_productos = document.getElementById('caja_productos');
+const totalItem1Cart = document.querySelector('.counter')
+const totalItemCart = document.querySelector('.totalItem')
+const totalCostoCart = document.querySelector('.totalCosto')
+
+let totalItem1 = 0
+let totalItem = 0
+let totalCosto = 0
+
 
 function mostrarProductos(items){
     let fragmento = ``
@@ -88,7 +97,7 @@ function mostrarProductos(items){
         fragmento += `
             <div class="carta" id="${productos.id}">
                 <div class="contenedor-imagen"><img class="carta-imagen" src="${productos.image}" alt="foto del producto"></div>
-                <h4 class="carta-precio">${productos.price}</h4>
+                <h4 class="carta-precio">$${productos.price}.00</h4>
                 <h6 class="carta-stock">Stock: ${productos.quantity}</h6>
                 <h4 class="carta-nombre">${productos.name}</h4>
                 <button class="btn_item">+</button>
@@ -113,7 +122,7 @@ function funcionalidadCartas(){
             const id = parseInt(e.target.parentElement.id)
             const productoSeleccionado = arregloProductos.find( item => item.id == id )
             productoSeleccionado.cantidad = 1
-            
+
             if(arregloProductos[id - 1].quantity !== 0){
               arregloProductos[id - 1].quantity--;
 
@@ -124,47 +133,139 @@ function funcionalidadCartas(){
                     carritoCompras[productoSeleccionado.id] = {...productoSeleccionado}
                 }
 
+                totalItem++
+                totalItem1++
+                totalItemCart.textContent = totalItem
+                totalItem1Cart.textContent = totalItem1
+
             }else{
               mensajeAlerta.classList.remove('hide')
             }          
 
             
-            console.log(carritoCompras);
-            console.log(arregloProductos[id -1].quantity,arregloProductos[id -1].name)
+            //console.log(carritoCompras);
+            //console.log(arregloProductos[id -1].quantity,arregloProductos[id -1].name)
             
             mostrarProductos(arregloProductos)
             addToCartShop(carritoCompras)
+
         })
     })
+    
 }
 const carrito = document.getElementById('cart')
+const carroIpreso = document.getElementById('carroIpreso')
 
 function addToCartShop(cartShop){
     let carroImpreso = Object.values(cartShop)
     
-    window.localStorage.setItem('savedCart', JSON.stringify(carroImpreso))
-    
-    let fragmento = ``
+    //window.localStorage.setItem('savedCart', JSON.stringify(carroImpreso))
 
-    carroImpreso.forEach(item => {
-        fragmento.innerHTML += `
+    let fragmento = ``
+    carroImpreso.forEach(elemento=>{
+        totalCosto = elemento.price * elemento.cantidad
+        totalCostoCart.textContent = totalCosto
+    })
+
+    carroImpreso.map(item => {
+
+        fragmento += `
             <div class="carrito" id="${item.id}">
                 <div class="contenedor--imagen-carrito"><img class="carrito-imagen" src="${item.image}" alt="foto del producto"></div>
                 <div class="contenedor--texto-carrito">
                     <h4 class="carrito-t carrito-nombre">${item.name}</h4>
-                    <h5 class="carrito-t carrito-stock">Stock: ${item.quantity}<span class="carrito-t carrito-precio">$${item.price}</span></h5>
-                    <h4 class="carrito-t carrito-subtotal">Subtotal: $${item.price * item.cantidad}</h4>
+                    <h5 class="carrito-t carrito-stock">Stock: ${(item.quantity + 1) - item.cantidad}<span class="carrito-t carrito-precio">$${item.price}.00</span></h5>
+                    <h4 class="carrito-t carrito-subtotal">Subtotal: $ ${item.price * item.cantidad}.00</h4>
                     <div class="botones-carrito">
-                        <button id="btn_plus" class="carrito-t btn_item">-</button>
+                        <button class="btn_minus carrito-t">-</button>
                         <h4 class="carrito-t carrito-cantidad">${item.cantidad} units</h4>
-                        <button id="btn_minus" class="carrito-t btn_item">+</button>
-                        <button class="btn_carrito" id="btn_carrito_delete"><i class='bx bx-trash-alt'></i></button>
+                        <button class="btn_plus carrito-t">+</button>
+                        <button class="btn_carrito_delete btn_carrito"><i class='bx bx-trash-alt'></i></button>
                     </div>
                 </div>
             </div>
         `
     })
-    console.log(fragmento);
+
+    carroIpreso.innerHTML = fragmento
+    funcionalidadBtns()
+}
+
+
+
+function funcionalidadBtns(){
+    const btnPlus = document.querySelectorAll('.btn_plus')
+    const btnMinus = document.querySelectorAll('.btn_minus')
+    const btnDelete = document.querySelectorAll('.btn_carrito_delete')
+
+    btnPlus.forEach(boton =>{
+        boton.addEventListener('click', e=>{
+            let sumar = Object.values(carritoCompras)
+            const id = parseInt(e.target.parentElement.parentElement.parentElement.id)
+            const productoSeleccionado = sumar.find( item => item.id == id )
+            
+            if(arregloProductos[id - 1].quantity !== 0){
+                arregloProductos[id - 1].quantity--
+                
+                if(carritoCompras.hasOwnProperty(productoSeleccionado.id)) carritoCompras[productoSeleccionado.id].cantidad++
+                
+                totalItem++
+                totalItem1++
+                totalItemCart.textContent = totalItem
+                totalItem1Cart.textContent = totalItem1
+              }else{
+                mensajeAlerta.classList.remove('hide')
+              }
+              addToCartShop(carritoCompras)
+              mostrarProductos(arregloProductos)
+        })
+    })
+
+    btnMinus.forEach(boton =>{
+        boton.addEventListener('click', e=>{
+            let sumar = Object.values(carritoCompras)
+            const id = parseInt(e.target.parentElement.parentElement.parentElement.id)
+            const productoSeleccionado = sumar.find( item => item.id == id )
+            
+                arregloProductos[id - 1].quantity++;
+                
+                if(carritoCompras[productoSeleccionado.id].cantidad === 1){
+                    delete carritoCompras[productoSeleccionado.id]
+                }else if(carritoCompras.hasOwnProperty(productoSeleccionado.id)){
+                    carritoCompras[productoSeleccionado.id].cantidad--
+                }
+    
+              addToCartShop(carritoCompras)
+              mostrarProductos(arregloProductos)
+
+                totalItem--
+                totalItem1--
+                totalItemCart.textContent = totalItem
+                totalItem1Cart.textContent = totalItem1
+
+        })
+    })
+
+    btnDelete.forEach(boton =>{
+        boton.addEventListener('click', e=>{
+            let sumar = Object.values(carritoCompras)
+            const id = parseInt(e.target.parentElement.parentElement.parentElement.parentElement.id)
+            const productoSeleccionado = sumar.find( item => item.id == id )
+            let devolverStock = productoSeleccionado.cantidad + arregloProductos[id - 1].quantity
+            
+            totalItem = totalItem - productoSeleccionado.cantidad
+            totalItem1 = totalItem1 - productoSeleccionado.cantidad
+            totalItemCart.textContent = totalItem
+            totalItem1Cart.textContent = totalItem1
+
+            arregloProductos[id - 1].quantity = devolverStock
+            productoSeleccionado.cantidad = 0
+            delete carritoCompras[productoSeleccionado.id]
+    
+            addToCartShop(carritoCompras)
+            mostrarProductos(arregloProductos)
+        })
+    })
 }
 
 const botonCerrarAlert = document.getElementById('cerrar_mensaje');
