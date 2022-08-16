@@ -142,6 +142,8 @@ const carrito = document.getElementById('cart')
 function addToCartShop(cartShop){
     let carroImpreso = Object.values(cartShop)
     
+    window.localStorage.setItem('savedCart', JSON.stringify(carroImpreso))
+    
     let fragmento = ``
 
     carroImpreso.forEach(item => {
