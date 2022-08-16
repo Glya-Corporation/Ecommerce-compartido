@@ -103,9 +103,10 @@ function mostrarProductos(items){
 
 const mensajeAlerta = document.querySelector('.alert');
 
+const carritoCompras = {}
+
 function funcionalidadCartas(){
     const btns = document.querySelectorAll('.btn_item');
-    const carritoCompras = {}
     
     btns.forEach( boton => {
         boton.addEventListener('click', e => {
@@ -115,12 +116,14 @@ function funcionalidadCartas(){
             
             if(arregloProductos[id - 1].quantity !== 0){
               arregloProductos[id - 1].quantity--;
-            
-            if(carritoCompras.hasOwnProperty(productoSeleccionado.id)){
-                productoSeleccionado.cantidad = carritoCompras[productoSeleccionado.id].cantidad + 1
-            }
 
-            carritoCompras[productoSeleccionado.id] = {...productoSeleccionado}
+                if(carritoCompras.hasOwnProperty(productoSeleccionado.id)){
+                    carritoCompras[productoSeleccionado.id].cantidad++
+                }else{
+
+                    carritoCompras[productoSeleccionado.id] = {...productoSeleccionado}
+                }
+
             }else{
               mensajeAlerta.classList.remove('hide')
             }          
@@ -130,8 +133,36 @@ function funcionalidadCartas(){
             console.log(arregloProductos[id -1].quantity,arregloProductos[id -1].name)
             
             mostrarProductos(arregloProductos)
+            addToCartShop(carritoCompras)
         })
     })
+}
+const carrito = document.getElementById('cart')
+
+function addToCartShop(cartShop){
+    let carroImpreso = Object.values(cartShop)
+    
+    let fragmento = ``
+
+    carroImpreso.forEach(item => {
+        fragmento.innerHTML += `
+            <div class="carrito" id="${item.id}">
+                <div class="contenedor--imagen-carrito"><img class="carrito-imagen" src="${item.image}" alt="foto del producto"></div>
+                <div class="contenedor--texto-carrito">
+                    <h4 class="carrito-t carrito-nombre">${item.name}</h4>
+                    <h5 class="carrito-t carrito-stock">Stock: ${item.quantity}<span class="carrito-t carrito-precio">$${item.price}</span></h5>
+                    <h4 class="carrito-t carrito-subtotal">Subtotal: $${item.price * item.cantidad}</h4>
+                    <div class="botones-carrito">
+                        <button id="btn_plus" class="carrito-t btn_item">-</button>
+                        <h4 class="carrito-t carrito-cantidad">${item.cantidad} units</h4>
+                        <button id="btn_minus" class="carrito-t btn_item">+</button>
+                        <button class="btn_carrito" id="btn_carrito_delete"><i class='bx bx-trash-alt'></i></button>
+                    </div>
+                </div>
+            </div>
+        `
+    })
+    console.log(fragmento);
 }
 
 const botonCerrarAlert = document.getElementById('cerrar_mensaje');
@@ -150,4 +181,3 @@ categoria.forEach( boton =>{
         }
     })
 })
-
