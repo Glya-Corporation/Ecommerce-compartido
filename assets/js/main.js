@@ -42,9 +42,26 @@ cartClose.addEventListener( "click", () => {
 })
 
 
+/* =========MENU NAV========= */
+const menuOpen = document.getElementById('nav-toggle')
+const menuClose = document.getElementById('nav-close')
+const navMenu = document.getElementById('nav--menu')
+
+
+menuOpen.addEventListener( "click", () => {
+    navMenu.classList.add('nav--menu__show')
+})
+
+menuClose.addEventListener( "click", () => {
+    navMenu.classList.remove('nav--menu__show')
+})
+
 
 /* ========SCROLL========= */
 const header = document.getElementById("header")
+const linkHome = document.getElementById('nav--link-home')
+const linkProductos = document.getElementById('nav--link-productos')
+const discovery = document.querySelector('.display-btn1')
 
 window.addEventListener( "scroll", () =>{
     if( window.scrollY >= 50 ){
@@ -52,17 +69,32 @@ window.addEventListener( "scroll", () =>{
     }else{
         header.classList.remove("scroll-header")
     }
+
+    if( window.scrollY >= 500 ){
+        linkProductos.classList.add("nav--link-active")
+        linkHome.classList.remove("nav--link-active")
+    }else{
+        linkHome.classList.add("nav--link-active")
+        linkProductos.classList.remove("nav--link-active")
+    }
+    
 })
 
-const discovery = document.querySelector('.display-btn1')
-discovery.addEventListener('click', ()=>{
-  up()
-})
-
-function up(){
+linkHome.addEventListener('click', ()=>{
+    navMenu.classList.remove('nav--menu__show')
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
-}
+})
+
+linkProductos.addEventListener('click', ()=>{
+    navMenu.classList.remove('nav--menu__show')
+})
+
+discovery.addEventListener('click', ()=>{
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+})
+
 /* =========COMPORTAMIENTO CARRITO========== */
 const caja_productos = document.getElementById('caja_productos');
 const totalItem1Cart = document.querySelector('.counter')
