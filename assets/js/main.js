@@ -1,30 +1,4 @@
-const arregloProductos = [
-    {
-      id: 1,
-      name: 'Hoodies',
-      price: 14.00,
-      image: 'assets/images/featured1.png',
-      category: 'hoodies',
-      quantity: 10
-    },
-    {
-      id: 2,
-      name: 'Shirts',
-      price: 24.00,
-      image: 'assets/images/featured2.png',
-      category: 'shirts',
-      quantity: 15
-    },
-    {
-      id: 3,
-      name: 'Sweatshirts',
-      price: 24.00,
-      image: 'assets/images/featured3.png',
-      category: 'sweatshirts',
-      quantity: 20
-    }
-  ]
-
+import  {arregloProductos} from './data/db.js'
 
 document.addEventListener( "DOMContentLoaded", () =>{
     load()
@@ -79,6 +53,16 @@ window.addEventListener( "scroll", () =>{
         header.classList.remove("scroll-header")
     }
 })
+
+const discovery = document.querySelector('.display-btn1')
+discovery.addEventListener('click', ()=>{
+  up()
+})
+
+function up(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+}
 /* =========COMPORTAMIENTO CARRITO========== */
 const caja_productos = document.getElementById('caja_productos');
 const totalItem1Cart = document.querySelector('.counter')
