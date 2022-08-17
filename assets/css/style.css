@@ -201,6 +201,7 @@ body{
 .carrito-precio{
   border-left: 1px solid #00000050;
   padding-left: 4px;
+  margin-left: 4px;
   color: var(--first-color);
 }
 .carrito-subtotal{
@@ -234,6 +235,14 @@ body{
 }
 .bx-trash-alt{
   font-size: 20px;
+}
+.carrito-totalCosto{
+  font-size: 15px;
+  font-weight: bold;
+}
+.imagen-carrito-vacio{
+  width: 100%;
+  margin: auto;
 }
 .nav--btns{
   display: flex;

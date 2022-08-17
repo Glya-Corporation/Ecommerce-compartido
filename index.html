@@ -87,10 +87,14 @@
 
         <h2 class="titulo-cart">My Cart</h2>
 
-        <div id="carroIpreso"></div>
+        <div id="carroIpreso">
+          <img src="./assets/images/empty-cart.png" alt="Carrito Vacio" class="imagen-carrito-vacio">
+          <h3 style="text-align: center">Tu carrito está vacío</h3>
+          <p style="padding: .5rem 2rem; text-align: center;">Puedes añadir productos a tu carrito cliqueando en el boton "+" en la página de productos</p>
+        </div>
         <div class="footer-carrito">
           <small class="carrito-totalItem"><span class="totalItem"></span> Items</small>
-          <small class="carrito-totalCosto">$<span class="totalCosto"></span> </small>
+          <small class="carrito-totalCosto">$<span class="totalCosto">0</span>.00</small>
         </div>
       </div>
     </div>
@@ -116,16 +120,16 @@
   <!--fin Display y titulo-->
   <!--Cateogorias y filtrado-->
   <section class="categorias">
-      <article id="categorias_all" class="categoria c-borde"><h3>Show all</h3> <span>show all products</span></article>
-      <article id="hoodies" class="categoria c-borde"><h3>Hoodies</h3><span>0 products</span></article>
-      <article id="shirts" class="categoria c-borde"><h3>Shirts</h3><span>0 products</span></article>
-      <article id="sweatshirts" class="categoria"><h3>Sweatshirts</h3><span>0 products</span></article>
+      <article id="categorias_all" class="categoria c-borde"><h3 class="categorySelect">Show all</h3> <span>show all products</span></article>
+      <article id="hoodies" class="categoria c-borde"><h3 class="categorySelect">Hoodies</h3><span>3 products</span></article>
+      <article id="shirts" class="categoria c-borde"><h3 class="categorySelect">Shirts</h3><span>4 products</span></article>
+      <article id="sweatshirts" class="categoria"><h3 class="categorySelect">Sweatshirts</h3><span>4 products</span></article>
   </section>
   <!--fin Cateogorias y filtrado-->
   <!--Inicio cartas de producto-->
   <section class="productos" id="caja_productos"></section>
     </main>
 
-    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/main.js" type="module"></script>
 </body>
 </html>

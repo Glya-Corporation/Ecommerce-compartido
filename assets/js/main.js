@@ -113,7 +113,6 @@ function mostrarProductos(items){
 const mensajeAlerta = document.querySelector('.alert');
 
 const carritoCompras = {}
-
 function funcionalidadCartas(){
     const btns = document.querySelectorAll('.btn_item');
     
@@ -156,16 +155,19 @@ function funcionalidadCartas(){
 const carrito = document.getElementById('cart')
 const carroIpreso = document.getElementById('carroIpreso')
 
+
 function addToCartShop(cartShop){
     let carroImpreso = Object.values(cartShop)
+ 
+    const totalCosto = carroImpreso.reduce( (total, product) => {
+        return total + (product.cantidad * product.price)
+    }, 0 )
+
+    totalCostoCart.textContent = totalCosto
     
     //window.localStorage.setItem('savedCart', JSON.stringify(carroImpreso))
 
     let fragmento = ``
-    carroImpreso.forEach(elemento=>{
-        totalCosto = elemento.price * elemento.cantidad
-        totalCostoCart.textContent = totalCosto
-    })
 
     carroImpreso.map(item => {
 
@@ -189,6 +191,8 @@ function addToCartShop(cartShop){
 
     carroIpreso.innerHTML = fragmento
     funcionalidadBtns()
+
+    carroVacio(carritoCompras)
 }
 
 
@@ -264,14 +268,29 @@ function funcionalidadBtns(){
     
             addToCartShop(carritoCompras)
             mostrarProductos(arregloProductos)
+
         })
     })
+}
+
+function carroVacio(carro){
+    let evaluarCarro = Object.values(carro)
+    
+    if(evaluarCarro.length < 1){
+        carroIpreso.innerHTML = `
+                <img src="./assets/images/empty-cart.png" alt="Carrito Vacio" class="imagen-carrito-vacio">
+                <h3 style="text-align: center">Tu carrito está vacío</h3>
+                <p style="padding: .5rem 2rem; text-align: center;">Puedes añadir productos a tu carrito cliqueando en el boton "+" en la página de productos</p>
+            `
+    }else{
+        console.log('hola');
+    }
 }
 
 const botonCerrarAlert = document.getElementById('cerrar_mensaje');
 botonCerrarAlert.addEventListener('click', e => mensajeAlerta.classList.add('hide'))
 
-let categoria = document.querySelectorAll('.categoria')
+let categoria = document.querySelectorAll('.categorySelect')
 
 categoria.forEach( boton =>{
     boton.addEventListener('click', e=>{
