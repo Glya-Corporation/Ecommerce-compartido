@@ -48,4 +48,81 @@
     #nav-close{
         display: none !important;
     }
+
+    /*Filtado y categorias*/
+  
+    .categorias{
+        gap:2rem;
+        margin-bottom: 1.5rem;
+    }
+    .categoria{
+      display: flex;
+      flex-direction: column;
+      width: 150px;
+      height:50px;
+      justify-content: center;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      }
+    .categoria h3{
+      position: relative;
+      font-size: 1.5rem;
+      font-weight: 500;
+      height: 20px;
+      margin-bottom: 1rem;
+      right: 2.5rem;
+      }
+      
+    .categoria span{
+      position: relative;
+      font-size: 1rem;
+      right: 2.5rem;
+      }
+  
+    /*Productos*/
+  
+    .productos{
+      width: 95vw;
+      height: 65vh;
+      display: flex;
+      justify-content: center;
+      gap: 5rem;
+    }
+  
+    .carta{
+      width: 250px;
+      height: 350px;
+    }
+  
+    .contenedor-imagen{
+      width: 100%;
+      height: 78%;
+    }
+    .carta-imagen{
+      width: 90%;
+      height: 90%;
+    }
+  
+    .carta-precio{
+      font-size: 24px;
+      padding-left: .4rem;
+    }
+    
+    .carta-stock{
+      font-size: 14px;
+  
+    }
+    
+    .carta-nombre{
+      font-size: 18px;
+      padding-left: .4rem;
+  
+    }
+  
+    .btn_item{
+      height:50px;
+      width:50px;
+      bottom:3.4rem;
+    }
+
 }
