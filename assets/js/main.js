@@ -1,7 +1,6 @@
 import  {arregloProductosModulo} from './data/db.js'
-
 let arregloProductos = JSON.parse(window.localStorage.getItem('arregloProductos'))
-console.log(arregloProductos);
+
 if(arregloProductos === null) arregloProductos = arregloProductosModulo
 
 document.addEventListener( "DOMContentLoaded", () =>{
@@ -31,7 +30,7 @@ if(theme === 'bx-moon'){
 }
 
 let themeBody = JSON.parse(window.localStorage.getItem('themeBody'))
-if(themeBody !== ''){
+if(themeBody === 'dark-theme'){
     document.body.classList.add( "dark-theme" )
 }else{
     document.body.classList.remove( "dark-theme" )
@@ -40,7 +39,6 @@ if(themeBody !== ''){
 
 themeButton.addEventListener( "click", e=>{
     theme = e.target.classList[1];
-    console.log(e.target.classList[1]);
     window.localStorage.setItem('theme', JSON.stringify(theme))
 
     document.body.classList.toggle( "dark-theme" )
@@ -132,8 +130,7 @@ let totalItem = JSON.parse(window.localStorage.getItem('totalItem'))
 if(totalItem === null) totalItem = 0
 
 let totalItem1 = JSON.parse(window.localStorage.getItem('totalItem1'))
-if(totalItem1 === null) totalItem = 0
-
+if(totalItem1 === null) totalItem1 = 0
 let totalCosto = 0
 
 
@@ -344,8 +341,6 @@ function carroVacio(carro){
                 <h3 style="text-align: center">Tu carrito está vacío</h3>
                 <p style="padding: .5rem 2rem; text-align: center;">Puedes añadir productos a tu carrito cliqueando en el boton "+" en la página de productos</p>
             `
-    }else{
-        console.log('hola');
     }
 }
 
