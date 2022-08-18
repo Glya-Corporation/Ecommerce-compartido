@@ -1,8 +1,14 @@
-import  {arregloProductos} from './data/db.js'
+import  {arregloProductosModulo} from './data/db.js'
+
+let arregloProductos = JSON.parse(window.localStorage.getItem('arregloProductos'))
+console.log(arregloProductos);
+if(arregloProductos === null) arregloProductos = arregloProductosModulo
 
 document.addEventListener( "DOMContentLoaded", () =>{
     load()
     mostrarProductos(arregloProductos)
+    addToCartShop(carritoCompras)
+    imprimirTotales()
 })
 
 /* =========== LOADER ========== */
@@ -14,10 +20,31 @@ function load () {
 }
 
 /* =========DARK MODE======== */
-const themeButton = document.getElementById( "theme-button" )
+let themeButton = document.getElementById( "theme-button" )
+let theme = JSON.parse(window.localStorage.getItem('theme'))
+if(theme === null) theme = 'bx-sun'
 
-themeButton.addEventListener( "click", () =>{
+if(theme === 'bx-moon'){
+    themeButton.classList.replace( "bx-moon", "bx-sun" )
+}else{
+    themeButton.classList.replace( "bx-sun", "bx-moon" )
+}
+
+let themeBody = JSON.parse(window.localStorage.getItem('themeBody'))
+if(themeBody !== ''){
+    document.body.classList.add( "dark-theme" )
+}else{
+    document.body.classList.remove( "dark-theme" )
+}
+
+
+themeButton.addEventListener( "click", e=>{
+    theme = e.target.classList[1];
+    console.log(e.target.classList[1]);
+    window.localStorage.setItem('theme', JSON.stringify(theme))
+
     document.body.classList.toggle( "dark-theme" )
+    window.localStorage.setItem('themeBody', JSON.stringify(document.body.classList.value))
 
     if( themeButton.classList.contains( "bx-moon" ) ){
         themeButton.classList.replace( "bx-moon", "bx-sun" )
@@ -101,8 +128,12 @@ const totalItem1Cart = document.querySelector('.counter')
 const totalItemCart = document.querySelector('.totalItem')
 const totalCostoCart = document.querySelector('.totalCosto')
 
-let totalItem1 = 0
-let totalItem = 0
+let totalItem = JSON.parse(window.localStorage.getItem('totalItem'))
+if(totalItem === null) totalItem = 0
+
+let totalItem1 = JSON.parse(window.localStorage.getItem('totalItem1'))
+if(totalItem1 === null) totalItem = 0
+
 let totalCosto = 0
 
 
@@ -123,12 +154,18 @@ function mostrarProductos(items){
 
     caja_productos.innerHTML = fragmento
 
+    window.localStorage.setItem('arregloProductos', JSON.stringify(arregloProductos))
+
+
     funcionalidadCartas()
 }
 
 const mensajeAlerta = document.querySelector('.alert');
 
-const carritoCompras = {}
+let carritoCompras = JSON.parse(window.localStorage.getItem('carritoCompras'))
+if(carritoCompras === null) carritoCompras = {}
+
+
 function funcionalidadCartas(){
     const btns = document.querySelectorAll('.btn_item');
     
@@ -150,8 +187,9 @@ function funcionalidadCartas(){
 
                 totalItem++
                 totalItem1++
-                totalItemCart.textContent = totalItem
-                totalItem1Cart.textContent = totalItem1
+                
+                
+                imprimirTotales()
 
             }else{
               mensajeAlerta.classList.remove('hide')
@@ -168,6 +206,16 @@ function funcionalidadCartas(){
     })
     
 }
+
+function imprimirTotales(){
+    window.localStorage.setItem('totalItem', JSON.stringify(totalItem))
+    window.localStorage.setItem('totalItem1', JSON.stringify(totalItem1))
+    totalItemCart.textContent = totalItem
+    totalItem1Cart.textContent = totalItem1
+}
+
+
+
 const carrito = document.getElementById('cart')
 const carroIpreso = document.getElementById('carroIpreso')
 
@@ -209,6 +257,7 @@ function addToCartShop(cartShop){
     funcionalidadBtns()
 
     carroVacio(carritoCompras)
+    window.localStorage.setItem('carritoCompras', JSON.stringify(carritoCompras))
 }
 
 
@@ -231,8 +280,7 @@ function funcionalidadBtns(){
                 
                 totalItem++
                 totalItem1++
-                totalItemCart.textContent = totalItem
-                totalItem1Cart.textContent = totalItem1
+                imprimirTotales()
               }else{
                 mensajeAlerta.classList.remove('hide')
               }
@@ -260,8 +308,7 @@ function funcionalidadBtns(){
 
                 totalItem--
                 totalItem1--
-                totalItemCart.textContent = totalItem
-                totalItem1Cart.textContent = totalItem1
+                imprimirTotales()
 
         })
     })
@@ -275,8 +322,7 @@ function funcionalidadBtns(){
             
             totalItem = totalItem - productoSeleccionado.cantidad
             totalItem1 = totalItem1 - productoSeleccionado.cantidad
-            totalItemCart.textContent = totalItem
-            totalItem1Cart.textContent = totalItem1
+            imprimirTotales()
 
             arregloProductos[id - 1].quantity = devolverStock
             productoSeleccionado.cantidad = 0

@@ -1,4 +1,4 @@
- export const arregloProductos = [
+ export const arregloProductosModulo = [
     {
       id: 1,
       name: 'Hoodies',
