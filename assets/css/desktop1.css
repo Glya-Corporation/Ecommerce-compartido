@@ -1,4 +1,7 @@
 @media screen and (min-width: 1024px) {
+    .nav{
+        width: 95vw !important;
+    }
     .display{
         display: grid;
         height: 100vh;
@@ -26,7 +29,7 @@
         padding-bottom: 4rem !important;
     }
 
-    .bx-grid-alt{
+    .nav--toggle{
         display: none;
     }
     .nav--menu{
@@ -42,7 +45,7 @@
         flex-direction: row !important;
         gap: 40px !important;
     }
-    .nav--close{
+    #nav-close{
         display: none !important;
     }
 }
