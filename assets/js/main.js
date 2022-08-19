@@ -157,7 +157,7 @@ function mostrarProductos(items){
     funcionalidadCartas()
 }
 
-const mensajeAlerta = document.querySelector('.alert');
+const mensajeAlerta = document.querySelector('#alert');
 
 let carritoCompras = JSON.parse(window.localStorage.getItem('carritoCompras'))
 if(carritoCompras === null) carritoCompras = {}
@@ -331,6 +331,34 @@ function funcionalidadBtns(){
         })
     })
 }
+
+
+/* ================Comprar=================== */
+const vacio = document.getElementById('vacio')
+const compraRealizada = document.getElementById('compraRealizada')
+const btnComprar = document.getElementById('btn_Compra')
+
+btnComprar.addEventListener('click', ()=>{
+    let valorX = Object.values(carritoCompras)
+    if(valorX.length < 1){
+        vacio.classList.remove('hide')
+        setTimeout(() => {
+            vacio.classList.add( "hide" )
+        }, 3000);
+    }else{
+        compraRealizada.classList.remove('hide')
+        carritoCompras = {}
+        addToCartShop(carritoCompras)
+
+        totalItem = 0
+        totalItem1 = 0
+        imprimirTotales()
+        
+        setTimeout(() => {
+            compraRealizada.classList.add( "hide" )
+        }, 3000);
+    }
+})
 
 function carroVacio(carro){
     let evaluarCarro = Object.values(carro)

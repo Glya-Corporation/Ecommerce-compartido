@@ -248,6 +248,24 @@ body{
 .bx-trash-alt{
   font-size: 20px;
 }
+.comprarContainer{
+  width: 100%;
+  bottom: 1.5rem;
+  position: absolute;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.btnCompra{
+  border: transparent;
+  background-color: var(--first-color);
+  width: 5.5rem;
+  height: 2rem;
+  border-radius: 1rem;
+  color: var(--body-color);
+  font-size: 1rem;
+  font-weight: 600;
+}
 .carrito-totalCosto{
   font-size: 15px;
   font-weight: bold;

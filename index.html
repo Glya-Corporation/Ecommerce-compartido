@@ -25,10 +25,22 @@
           </g>
       </svg>
     </div>
-    <div class="alert hide">
+    <div class="alert hide" id="alert">
       <article class="mensaje-alert">
         <h2><span class="span-alert">¡Lo sentimos!</span> En este momento no disponemos de mayor cantidad.</h2>
         <button id="cerrar_mensaje">Cerrar</button>
+      </article>
+    </div>
+
+    <div class="alert hide" id="vacio">
+      <article class="mensaje-alert">
+        <h2><span class="span-alert">¡Lo sentimos!</span>No has seleccionado productos</h2>
+      </article>
+    </div>
+
+    <div class="alert hide" id="compraRealizada">
+      <article class="mensaje-alert">
+        <h2><span class="span-alert">¡Listo!</span>Tu compra ha sido realizada exitosamente</h2>
       </article>
     </div>
     <header class="header" id="header">
@@ -91,6 +103,10 @@
           <img src="./assets/images/empty-cart.png" alt="Carrito Vacio" class="imagen-carrito-vacio">
           <h3 style="text-align: center">Tu carrito está vacío</h3>
           <p style="padding: .5rem 2rem; text-align: center;">Puedes añadir productos a tu carrito cliqueando en el boton "+" en la página de productos</p>
+        </div>
+        <div class="comprarContainer">
+          
+          <button class="btnCompra" id="btn_Compra">Comprar</button>
         </div>
         <div class="footer-carrito">
           <small class="carrito-totalItem"><span class="totalItem">0</span> Items</small>
